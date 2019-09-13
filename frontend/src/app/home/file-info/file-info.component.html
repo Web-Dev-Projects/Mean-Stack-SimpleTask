@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>file info</h1>
+
+<div mat-dialog-content>
+    <mat-form-field>
+        <label for="filename">file name</label>
+        <input type="text" matInput id="filename" [value]="data.defaultFileName" #filePath />
+    </mat-form-field><br>
+</div>
+
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="filePath.value" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,29 @@
+<mat-card>
+    <form (submit)="none" [formGroup]="form">
+
+        <mat-form-field>
+            <input matInput type="text" formControlName="username" #elemnt required placeholder="username">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(username,'username')">{{errMsg}} </mat-error>
+        </mat-form-field>
+
+
+        <div formGroupName="passwordGroup">
+            <mat-form-field>
+                <input matInput type="password" formControlName="password" required placeholder="password">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="password" formControlName="confPassword" required
+                    placeholder="confirmation password">
+            </mat-form-field>
+
+            <div *ngIf="passwordGroup.invalid && password.touched && confPassword.touched">
+                <mat-error *ngFor="let errMsg of getErrorsMsgs(passwordGroup,'password')">{{errMsg}}</mat-error>
+            </div>
+        </div>
+
+        <button mat-raised-button color="accent" (click)="signup()" [disabled]="!form.valid">SignUp</button>
+    </form>
+
+    <mat-error *ngIf="form.errors"> username already taken.</mat-error>
+</mat-card>

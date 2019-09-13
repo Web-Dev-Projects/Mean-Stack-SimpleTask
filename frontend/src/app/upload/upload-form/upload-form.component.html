@@ -1,0 +1,34 @@
+<mat-card>
+    <form [formGroup]="form" class="example-container">
+        <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name" required minlength="3">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(name,'name')">{{errMsg}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Vendor Name" formControlName="vendorName" required minlength="3">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(vendorName,'vendor name')">{{errMsg}}</mat-error>
+        </mat-form-field>
+
+
+        <div class="custom-file margin-top">
+            <label class="custom-file-label"
+                for="exeFileName">{{exeFiles.length? exeFiles[0].name:"Choose .exe file"}}</label>
+            <input formControlName="exeFileName" type="file" class="custom-file-input" enctype="multipart/form-data"
+                id="exeFileName" (change)="exeFiles=$event.target.files">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(exeFileName,'exeFile')">{{errMsg}}</mat-error>
+        </div>
+
+        <div class="custom-file margin-top">
+            <label class="custom-file-label"
+                for="imgFileName">{{imgFiles.length? imgFiles[0].name:"Choose .png App logo"}}</label>
+            <input formControlName="imgFileName" type="file" class="custom-file-input" enctype="multipart/form-data"
+                id="imgFileName" (change)="imgFiles=$event.target.files">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(imgFileName,'img')">{{errMsg}}</mat-error>
+        </div>
+
+    </form>
+
+    <button (click)="submit()" [disabled]="!(form.valid)" mat-raised-button color='primary'
+        class="margin-top">Submit</button>
+</mat-card>

@@ -1,0 +1,5 @@
+<button mat-icon-button color="primary" [disabled]="fixRating || loading" *ngFor="let star of stars; let i=index"
+    [ngSwitch]="star" (click)="rate(elem._elementRef.nativeElement.id)" [id]="i+1" #elem>
+    <mat-icon class="material-icons" *ngSwitchCase="0">star_border</mat-icon>
+    <mat-icon class="material-icons" *ngSwitchCase="1">star</mat-icon>
+</button>

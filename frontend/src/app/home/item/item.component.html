@@ -1,0 +1,15 @@
+<div class="card h-100">
+    <a [href]="'/home/'+item?._id">
+        <img class="card-img-top" *ngIf="item" [src]="item?.imgFileSrc">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title"> {{item?.name}}</h5>
+        <h5>{{item?.downloadsNum}}</h5>
+        <p class="card-text">{{item?.description}}</p>
+    </div>
+    <div class="card-footer">
+        <app-rating [totalRating]="item?.rating" class="row d-felx justify-content-center"></app-rating>
+        <button mat-raised-button color='primary' class="action" (click)="saveFile()" webkitdirectory
+            class="action">Download</button>
+    </div>
+</div>

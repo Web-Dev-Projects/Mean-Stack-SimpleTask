@@ -1,0 +1,14 @@
+<mat-card>
+    <form (submit)="signin()" [formGroup]="form">
+        <mat-form-field>
+            <input matInput type="text" formControlName="username" required minlength="3" placeholder="username">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(username,'username')">{{errMsg}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" formControlName="password" required minlength="4" placeholder="password">
+            <mat-error *ngFor="let errMsg of getErrorsMsgs(password,'password')">{{errMsg}} </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!(form.valid)">SignIn</button>
+    </form>
+    <mat-error *ngFor="let errMsg of getErrorsMsgs(form,'username/password')">{{errMsg}}</mat-error>
+</mat-card>

@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+body{
+    padding: 1rem 1rem 1rem 1rem;
+    margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+html, body { height: 100%; }
+
+mat-form-field {
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
