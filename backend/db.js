@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 exports.connect = (dbName) => {
-    mongoose.connect('mongodb://localhost:27017/' + dbName, { useNewUrlParser: true });
+    mongoose.connect('mongodb://localhost:27017/' + dbName, { useNewUrlParser: true, useUnifiedTopology: true });
     mongoose.connection.on('error', () => { throw new Error("Failed to connect to database") });
     mongoose.connection.once('open', function () {
         console.log(`Successfuly connected to ${dbName} DB`);

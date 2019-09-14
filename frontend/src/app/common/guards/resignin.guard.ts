@@ -9,7 +9,7 @@ export class ReSigninGuard implements CanActivate {
     constructor(private usersService: UsersService, private router: Router) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.usersService.isSigendIn) {
+        if (this.usersService.isSignedIn) {
             return this.router.parseUrl('/404')
         }
         return true;

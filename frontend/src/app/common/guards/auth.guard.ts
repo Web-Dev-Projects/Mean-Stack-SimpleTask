@@ -12,7 +12,7 @@ export class AuthGaurd implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        if (this.usersService.isSigendIn) {
+        if (this.usersService.isSignedIn) {
             return true;
         }
 

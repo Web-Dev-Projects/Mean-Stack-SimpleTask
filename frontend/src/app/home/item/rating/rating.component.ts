@@ -43,7 +43,7 @@ export class RatingComponent implements OnChanges {
     }
 
     ngOnInit() {
-        if (this.fixRating === false && this.userService.isSigendIn) {
+        if (this.fixRating === false && this.userService.isSignedIn) {
             this.itemService.getMyRating(this.itemId)
                 .subscribe((rating: any) => {
                     this.userRating = rating;

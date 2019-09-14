@@ -28,11 +28,11 @@ export class UsersService extends DataService {
     }
 
     get userName() {
-        return (this.isSigendIn) ?
+        return (this.isSignedIn) ?
             new JwtHelperService().decodeToken(localStorage.getItem('accessToken')).username : "Anonymous";
     }
 
-    get isSigendIn(): boolean {
+    get isSignedIn(): boolean {
         return localStorage.getItem('accessToken') ? true : false;
     }
 }
