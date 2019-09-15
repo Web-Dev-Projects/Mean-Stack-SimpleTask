@@ -19,11 +19,13 @@ module.exports = function (req, res, next) {
             fields.exeFileSize = files[fileName].size;
         }
 
+
         let newpath = path.join(process.env.FILESPATH, newFileNmae);
 
         fs.rename(oldpath, newpath, function (err) {
+            console.log("in filesaver", err);
             if (err)
-                return res.status(500).json({ errMsg: "Internal Error" })
+                return res.status(500).json(err)
         });
     });
 
