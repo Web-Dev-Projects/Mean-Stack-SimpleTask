@@ -1,11 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 
 import { ItemsService } from 'src/app/home/items.service';
 import { IUploadForm } from '../models/upload-form';
 import { Router } from '@angular/router';
 import { IItem } from 'src/app/home/models/item';
-ItemsService
 
 @Component({
     selector: 'app-upload-form',
@@ -30,21 +29,6 @@ export class UploadFormComponent {
     get vendorName() { return this.form.get('vendorName'); };
     get exeFileName() { return this.form.get('exeFileName'); };
     get imgFileName() { return this.form.get('imgFileName'); };
-
-    private makeFileValidator(exetention) {
-        return function (control: AbstractControl) {
-            if (!(control.value)) return { required: { required: true } };
-            else if (control.value instanceof Array && control.value.length > 1) return { wrongFilesNum: { requiredFilesNum: 1 } }
-
-            let fielExt = control.value.split(".").reverse()[0];
-
-            if (fielExt != exetention) {
-                return { wrongExetention: { requiredExetention: exetention } };
-            } else {
-                return null;
-            }
-        }
-    }
 
     submit() {
         if (!(this.form.errors)) {
@@ -91,5 +75,20 @@ export class UploadFormComponent {
             })
 
         return errorsMsgs;
+    }
+
+    private makeFileValidator(exetention) {
+        return function (control: AbstractControl) {
+            if (!(control.value)) return { required: { required: true } };
+            else if (control.value instanceof Array && control.value.length > 1) return { wrongFilesNum: { requiredFilesNum: 1 } }
+
+            let fielExt = control.value.split(".").reverse()[0];
+
+            if (fielExt != exetention) {
+                return { wrongExetention: { requiredExetention: exetention } };
+            } else {
+                return null;
+            }
+        }
     }
 }

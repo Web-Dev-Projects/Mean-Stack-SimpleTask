@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemsService } from '../items.service';
-import { IItem } from '../models/item';
+import { IItem, makeItem } from '../models/item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IComment } from '../models/comment';
 import { NotFoundError } from 'src/app/common/errors/notfound';
@@ -11,8 +11,8 @@ import { NotFoundError } from 'src/app/common/errors/notfound';
     styleUrls: ['./opened-item.component.css']
 })
 export class OpenedItemComponent implements OnInit {
-    item: IItem;
-    comments: IComment[];
+    item: IItem = makeItem();
+    comments: IComment[] = [];
 
     constructor(private itemsService: ItemsService, private route: ActivatedRoute, private router: Router) { }
 

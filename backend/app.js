@@ -3,7 +3,7 @@ const cors = require('./middlewares/cors')
 const path = require('path');
 const itemsRouter = require('./routes/items');
 const usersRouter = require('./routes/users');
-require('./db').connect('schneider');
+require('./db').connect('task1');
 
 process.env.FILESPATH = process.cwd() + '/files';
 
