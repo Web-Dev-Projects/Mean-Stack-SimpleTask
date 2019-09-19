@@ -74,7 +74,7 @@ export class RatingComponent implements OnChanges {
                     .subscribe(() => {
                         console.log("rating changed")
                     }, this.errorHandler);
-            }, 3000);
+            }, 2000);
         }
 
     }

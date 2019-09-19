@@ -23,9 +23,10 @@ module.exports = function (req, res, next) {
         let newpath = path.join(process.env.FILESPATH, newFileNmae);
 
         fs.rename(oldpath, newpath, function (err) {
-            console.log("in filesaver", err);
-            if (err)
+            if (err) {
+                console.log("in filesaver", err);
                 return res.status(500).json(err)
+            }
         });
     });
 

@@ -15,3 +15,21 @@ export interface IItem {
         ratingsSum: number
     }
 }
+
+export function makeItem() {
+    return Object.assign({}, {
+        _id: '',
+        name: '',
+        vendorName: '',
+        desciption: '',
+        imgFileSrc: '',
+        exeFileSrc: '',
+        exeFileSize: 0,
+        downloadsNum: 0,
+        comments: [],
+        rating: {
+            num: 0,
+            ratingsSum: 0
+        }
+    });
+}

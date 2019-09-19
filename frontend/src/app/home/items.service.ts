@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IUploadForm } from 'src/app/upload/models/upload-form';
 import { DataService } from '../common/data.service';
-import { Router } from '@angular/router';
-import { IItem } from './models/item';
-import { Observable, pipe, throwError } from 'rxjs';
+import { IItem, makeItem } from './models/item';
+import { Observable, throwError } from 'rxjs';
 import { IComment } from './models/comment';
 import { catchError, map } from 'rxjs/operators';
 import { NotFoundError } from '../common/errors/notfound';
@@ -16,13 +15,12 @@ import { AppError } from '../common/errors/apperror';
     providedIn: 'root'
 })
 export class ItemsService extends DataService {
-    items: IItem[];
-    selectedItem: IItem;
+    items: IItem[] = [];
+    selectedItem: IItem = makeItem();
 
-    constructor(http: HttpClient, private router: Router) {
+    constructor(http: HttpClient) {
         super(http, "http://localhost:5000/api/items/");
         this.items = [];
-        this.selectedItem = null;
     }
 
     uploadFiles(uploadForm: IUploadForm) {
@@ -70,11 +68,12 @@ export class ItemsService extends DataService {
     }
 
     getItem(itemId) {
-        if (!this.selectedItem && this.items) {
-            let items = this.items.filter(item => item._id === itemId);
-            this.selectedItem = items ? items[0] : null;
+        if (this.items.length) {
+            let filteredItems = this.items.filter(item => item._id === itemId);
+            this.selectedItem = filteredItems ? filteredItems[0] : null;
         }
-        if (this.selectedItem && (this.selectedItem._id === itemId)) {
+
+        if (this.selectedItem._id === itemId) {
             return new Observable((subscriber) => {
                 subscriber.next(this.selectedItem)
             })
